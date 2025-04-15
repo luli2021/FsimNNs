@@ -1,0 +1,62 @@
+# use a fixed random seed to guarantee that when you run the code twice you will get the same outcome
+manual_seed: 3407
+
+dataset:
+  split_mode: hybrid
+  root_dir: "../data/ibex/test/"
+  train_val_dirs: ['../data/ibex/test2/']
+  test_dirs: ['../data/ibex/test2/']
+
+
+
+# model configuration
+model:
+  edge_vector_size: 8
+  time_window_size: 60
+  num_nodes: 2126
+  name: ASPP_STGATs
+  
+  #name: STGCNs
+  feat_list: [1, 16, 32, 64, 32]
+  dilation_list: [1, 2, 4, 8]
+  layer_types: TSTNTSTN
+
+  #name: ASPP_STGCNs
+  aspp_dilation_list: [2, 4, 8]
+  aspp_t_out_size: 1
+  aspp_s_hid_size: 16
+  s_feat_size_list: [32, 64, 32, 16]
+  control_str: SNSNSN
+
+  #name: ASPP_STGATs
+  #aspp_dilation_list: [2, 4, 8]
+  #aspp_t_out_size: 1
+  #aspp_s_hid_size: 16
+  edge_hid_size: 4
+  s_feat_size: 16
+  num_spatio_layers: 3
+  gat_hid_heads: 1
+
+
+# trainer configuration
+trainer:
+  epochs: 300
+  batch_size: 10
+  # path to the checkpoint directory
+  checkpoint_dir: FsimNN
+  # how many iterations between validations
+  validate_after_epochs: 1
+  early_stop_patience: 30
+
+
+
+# optimizer configuration
+optimizer:
+  # initial learning rate
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  factor: 0.5
+  patience: 20
+
+
+

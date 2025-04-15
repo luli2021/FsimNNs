@@ -1,0 +1,39 @@
+# path to the checkpoint file containing the model
+model_path: FsimNN
+# path to prediction results
+output_path: ./predictions/
+
+dataset:
+  split_mode: hybrid
+  root_dir: "../data/ibex/test/"
+  train_val_dirs: ['../data/ibex/test2/']
+  test_dirs: ['../data/ibex/test2/']
+
+# model configuration
+model:
+  edge_vector_size: 8
+  time_window_size: 60
+  num_nodes: 2126
+  name: ASPP_STGATs
+ 
+
+  #name: STGCNs
+  feat_list: [1, 16, 32, 64, 32]
+  dilation_list: [1, 2, 4, 8]
+  layer_types: TSTNTSTN
+
+  #name: ASPP_STGCNs
+  aspp_dilation_list: [2, 4, 8]
+  aspp_t_out_size: 1
+  aspp_s_hid_size: 16
+  s_feat_size_list: [32, 64, 32, 16]
+  control_str: SNSNSN
+
+  #name: ASPP_STGATs
+  #aspp_dilation_list: [2, 4, 8]
+  #aspp_t_out_size: 1
+  #aspp_s_hid_size: 16
+  edge_hid_size: 4
+  s_feat_size: 16
+  num_spatio_layers: 3
+  gat_hid_heads: 1
