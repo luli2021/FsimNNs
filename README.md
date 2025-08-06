@@ -1,4 +1,4 @@
-This repository contains the implementation and resources for our anonymous submission to ICCAD 2025, titled:
+This repository contains the implementation and resources for our paper, titled:
 
 > FsimNNs: An Open-Source Graph Neural Network Platform for SEU Simulation-based Fault Injection
 
